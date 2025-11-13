@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Engine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+        
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
+  
+    <style>
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+       
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+        .vid {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+      
+        .overlay {
+            position: absolute;   
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);  
+            z-index: 1;                       
+            pointer-events: none;
+        }
+       
+        .custom-navbar {
+            background-color: black;
+            margin-top: 20px;
+            margin-left: 120px;
+            margin-right: 120px;
+            padding: 1%;
+            border-radius: 15px;
+            display: flex;
+            position: relative;
+            z-index: 10;
+        }
+        .img {
+            margin-bottom: 30px;
+        }
+        .nav-link {
+            color: whitesmoke;
+            margin-top: 60px;
+            margin-right: 5px;
+        }
+        .nav-link:hover {
+            color: gold;
+        }
+        .custom-cta {
+            background-color: rgb(246, 245, 244);
+            border-radius: 20px;
+            margin-right: 90px;
+            margin-top: 60px;
+            padding: 18px;
+            white-space: nowrap;
+        }
+        .custom-cta:hover{
+            background-color: gold;
+        }
+        /* === CENTER NAV ITEMS & CTA BUTTON VERTICALLY === */
+@media (min-width: 992px) {
+    .custom-navbar .navbar-nav {
+        align-items: center;
+    }
+    
+    .custom-navbar .nav-link,
+    .custom-navbar .custom-cta {
+        margin-top: 0 !important;
+        display: flex;
+        align-items: center;
+    }
+    
+    .custom-navbar .navbar-collapse {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .custom-navbar .navbar-brand {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Ensure mobile toggle doesn't interfere */
+@media (max-width: 991.98px) {
+    .custom-navbar .navbar-collapse {
+        margin-top: 15px;
+    }
+    .custom-navbar .custom-cta {
+        margin: 15px auto 0 !important;
+        display: block !important;
+        width: fit-content !important;
+    }
+}
+       
+        .content {
+            padding-top: 7%;
+            position: relative;
+            z-index: 5;
+            color: white;
+            text-align: center;
+        }
+        .hero-cta{
+            background-color: rgb(12, 9, 6);
+            border-radius: 20px;
+            margin-left: 39%;
+            margin-top: 15px;
+            padding: 18px;
+            white-space: nowrap;
+            border-color: aqua;
+        }
+        .hero-cta:hover{
+            background-color: silver;
+            border-color: rgb(18, 17, 17);
+        }
+        .fas-cta{
+            background-color: #0d0d0d;
+            border: 12px;
+            border-color: aqua;
+            padding: 15px;
+            white-space:nowrap;
+            border-radius:45%;
+            margin-bottom: 10%;
+            margin-left: 90%;
+            font-size: 20px;
+            
+            
+
+        }
+         .fas-cta:hover{
+            background-color: rgb(58, 57, 55);
+            border-color: rgb(247, 243, 243);
+           }  
+           
+        /* New section styles */
+        .perfect-home-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+            position: relative;
+            z-index: 5;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 15px;
+        }
+        .section-title p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid gold;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        .feature-icon i {
+            font-size: 2.5rem;
+            color: gold;
+        }
+        .feature-card h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+           .perfect-home-section { padding: 80px 0; }
+    .section-title { margin-bottom: 50px; }
+    .section-title h2 { font-size: 2.5rem; font-weight: 700; color: #222; margin-bottom: 15px; }
+    .section-title p { font-size: 1.1rem; color: #141414; line-height: 1.6; }
+
+   
+    .feature-card {
+        border: none;
+        background: #ffffff ;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 15px rgba(244, 241, 241, 0.08);
+        margin-right: 5%;
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        background: #f8f9fa;
+        color: #222 !important;           
+        filter: grayscale(100%);          
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .feature-icon:hover {
+        
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        background: #f1f1f1;
+        filter: grayscale(100%);        
+        color: #000 !important;
+    }
+
+    .feature-card h4 { font-size: 1.3rem; font-weight: 600; margin-bottom: 15px; color: #222; }
+    .feature-card p { color: #555; line-height: 1.6; margin-bottom: 0; }
+    .feature-card strong { color: #333; }
+
+    .right-image {
+        height: 600px;
+        border-radius: 0px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        object-fit: cover;
+        margin-top: 30%;
+        width: 70%;
+    }
+
+    @media (max-width: 768px) {
+        .section-title h2 { font-size: 2rem; }
+        .right-image { height: 300px; margin-top: 30px; }
+    }
+    /* Responsive Hero CTA Button for Small Screens */
+@media (max-width: 576px) {
+    .hero-cta {
+        margin-left: 10% !important;
+        margin-right: 10% !important;
+        padding: 14px 20px !important;
+        font-size: 14px !important;
+        white-space: normal !important;
+        text-align: center;
+        line-height: 1.4;
+    }
+    
+    .hero-cta h6 {
+        font-size: 14px !important;
+        margin: 0;
+    }
+}
+/* RESPONSIVE NAVBAR ONLY - DO NOT TOUCH ANYTHING ELSE */
+@media (max-width: 992px) {
+    .custom-navbar {
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+        padding: 15px 10px !important;
+        margin-top: 10px !important;
+        border-radius: 12px !important;
+    }
+
+    .navbar-brand img.img {
+        width: 140px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .navbar-nav {
+        text-align: center;
+        margin-top: 20px !important;
+    }
+
+    .nav-link {
+        margin: 8px 0 !important;
+        font-size: 1rem !important;
+    }
+
+    .custom-cta {
+        margin: 15px auto 0 !important;
+        display: block !important;
+        width: fit-content !important;
+        padding: 12px 25px !important;
+        font-size: 0.95rem !important;
+    }
+}
+
+/* Extra small screens - tighter layout */
+@media (max-width: 576px) {
+    .custom-navbar {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        padding: 12px 8px !important;
+    }
+
+    .navbar-brand img.img {
+        width: 120px !important;
+    }
+
+    .custom-cta {
+        padding: 10px 20px !important;
+        font-size: 0.9rem 
+    }
+}
+
+@media (min-width: 769px) {
+    .text-center.mb-5 {
+        display: flex ;
+        justify-content: space-between ;
+        align-items: center ;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .text-center.mb-5 h3 {
+        margin: 0 ;
+        font-size: 2.2rem ;
+        text-align: left ;
+        flex: 1;
+    }
+
+    .fas-cta {
+        display: inline-block !important;
+        background-color: #000 ;
+        color: white ;
+        border: none ;
+        padding: 12px 24px ;
+        font-size: 1rem ;
+        font-weight: 600 ;
+        border-radius: 50px ;
+        text-decoration: none ;
+        white-space: nowrap ;
+        margin: 0;
+        margin-left: auto ;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) ;
+        transition: all 0.3s ease ;
+        border-color: #22c6e7;
+    }
+
+    .fas-cta:hover {
+        background-color: #0b0b0b ;
+        transform: translateY(-2px) ;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15) ;
+        border-color: #22c6e7;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .text-center.mb-5 {
+        text-align: center ;
+    }
+
+    .fas-cta {
+        display: block ;
+        width: fit-content ;
+        margin: 15px auto 0 ;
+        padding: 12px 28px;
+        font-size: 0.95rem ;
+        background: #141414 ;
+        color: white ;
+        border-radius: 50px ;
+        text-align: center;
+        border-color: #22c6e7;
+    }
+    
+}
+
+@media (max-width: 500px) {
+    .text-left.mb-5 {
+        text-align: left ;
+    }
+
+    .fas-cta {
+        display: block ;
+        width: fit-content ;
+        margin: 15px auto 0 ;
+        padding: 12px 28px ;
+        font-size: 0.95rem ;
+        background: #141414 ;
+        color: rgb(12, 11, 11) ;
+        border-radius: 50px;
+        text-align: left;
+        border-color: #22c6e7;
+        margin:left 50%;
+
+    }
+    }
+
+    .navbar-toggler .navbar-toggler-icon {
+        background-color: rgb(176, 174, 174)
+    }
+    .card-img-top { height: 280px; object-fit: cover; }
+        .status-available { color: #28a745; font-weight: 700; text-decoration: underline; }
+        .btn-view { border-radius: 25px; padding: 8px 20px; font-size: 0.9rem; }
+        section { padding: 100px 0; background-color: #f8f9fa; }
+        .price { font-size: 1.2rem; font-weight: 700; color: #222; }
+        .feature-list { list-style: none; padding: 0; margin: 10px 0 0; text-align: left; }
+        .feature-list li { font-size: 0.85rem; color: #555; margin-bottom: 5px; }
+        .feature-list li i { color: #28a745; margin-right: 8px; }
+        .card-body { padding: 1.5rem; }
+        h3.title { font-weight: 400; color: #222; font-size: 2.2rem; }
+
+
+
+    
+
+
+    </style>
+</head>
+<body>
+   
+    <div class="video-container">
+        <video class="vid" autoplay muted loop playsinline>
+            <source src="vid/14854556-uhd_3840_2160_30fps.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div> 
+    </div>
+
+   
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img class="img"
+                    src="https://images.unsplash.com/photo-1521058001910-55b77aba2203?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Ym13JTIwbG9nb3xlbnwwfHwwfHx8MA%3D%3D&fm=jpg&q=60&w=3000"
+                    alt="BMW" width="200">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html" style="color: rgb(127, 206, 240);">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="our-cars.html">Our Cars</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                   
+                    <li class="nav-item"><a class="nav-link" href="buy.html">Buy Engine</a></li>
+                   
+                </ul>
+                <a href="#" class="btn custom-cta">Download Our Brochure Here</a>
+            </div>
+        </div>
+    </nav>
+
+   
+     <div class="content">
+        
+        <h2 >Buy Your Ultimate Engine Here</h2>
+    </div>
+
+
+
+<section style="margin-top: 3%;" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h3 class="title">Premium Performance Engines</h3>
+            <p class="text-muted">.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- CARD 1: BMW TwinPower Turbo V8 -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-radius: 0px; overflow: hidden;">
+                    <img src="https://c8.alamy.com/comp/HBC2J1/v8-car-engine-HBC2J1.jpg" class="card-img-top" alt="BMW V8 Engine">
+                    <div class="card-body">
+                          <p class="status-available" style="font-size: 20px; ;">Available</p>
+                        <h5 class="card-title mb-2 mt-4" style="font-weight: 700; color: #222;margin-right: 1%;">BMW TwinPower Turbo V8</h5>
+                        
+                        <p class="text-muted mb-1" style="text-align: left;"><i class="fas fa-cogs"></i> M8 Competition / M850i</p>
+                       
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 4.4L displacement • 617 hp @ 6,000 rpm</li>
+                            <li><i class="fas fa-check"></i> 750 Nm torque • Twin-scroll turbos</li>
+                            <li><i class="fas fa-check"></i> Valvetronic & Double-VANOS</li>
+                            <li><i class="fas fa-check"></i> Aluminum block & closed-deck design</li>
+                        </ul>
+                       
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <a  href="#" class="btn btn-dark btn-sm btn-view">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2: Mercedes-AMG 4.0L V8 Biturbo -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-radius: 0px; overflow: hidden;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/1968_AMC_AMX_yellow_390_auto_md-er.jpg/500px-1968_AMC_AMX_yellow_390_auto_md-er.jpg" class="card-img-top" alt="Mercedes AMG V8">
+                    <div class="card-body">
+                        <span class="status-available" style="font-size: 20px; ">Available</span>
+                        <h5 class="card-title mb-2 mt-4" style="font-weight: 700; color: #222; text-align: left;">Mercedes-AMG 4.0L V8 Biturbo</h5>
+                        <p class="text-muted mb-1" style="text-align: left;"><i class="fas fa-cogs"></i> S 63 / GLE 63 / GT 63</p>
+                        
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 603 hp • 900 Nm torque peak</li>
+                            <li><i class="fas fa-check"></i> Handcrafted "One Man, One Engine"</li>
+                            <li><i class="fas fa-check"></i> Nanoslide cylinder coating</li>
+                            <li><i class="fas fa-check"></i> EQ Boost mild hybrid (21 hp)</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <a href="#" class="btn btn-dark btn-sm btn-view">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3: Lamborghini 4.0L V8 Twin-Turbo -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-radius: 0px; overflow: hidden;">
+                    <img src="data:image/jpeg;base64,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" class="card-img-top" alt="Lamborghini Urus Engine">
+                    <div class="card-body">
+                        <span class="status-available" style="font-size: 20px; ;">Available</span>
+                        <h5 class="card-title mb-2 mt-4" style="font-weight: 700; color: #222; text-align: left;">Lamborghini 4.0L V8 Twin-Turbo</h5>
+                        <p class="text-muted mb-1" style="text-align: left;"><i class="fas fa-cogs"></i> Urus Performante / S</p>
+                      
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 657 hp @ 6,000 rpm • 850 Nm</li>
+                            <li><i class="fas fa-check"></i> 3.3s 0-100 km/h (Performante)</li>
+                            <li><i class="fas fa-check"></i> Dry sump lubrication</li>
+                            <li><i class="fas fa-check"></i> Titanium intake valves</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <a href="#" class="btn btn-dark btn-sm btn-view">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4: Audi 4.0L TFSI V8 (RS) -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-radius: 0px; overflow: hidden;">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMVFRUWGRgbGRgYGRofHhsfGhceFx0eHRsdHSggGh0lHR0XITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFxAQFy0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALEBHAMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAAEBQIDBgABBwj/xABJEAACAQIDBQUEBwUGBAUFAAABAgMAEQQhMQUSQVFhBhMiMnFCgZGhUmJyscHR8BQjM4KSB1OisuHxFUNjwjRzo7PSRGSDk8P/xAAYAQEBAQEBAAAAAAAAAAAAAAABAAIDBP/EACYRAQEAAgICAgIABwAAAAAAAAABAhEhMQNBElFx8AQyYZGhseH/2gAMAwEAAhEDEQA/APmsUmJtcYuBPSWMH/CKiZsWWyxgYnlOD8quw+yQ/wDBhZxzWO49zyZfOm+G7L4hh4mEY6uT/hQKvzoth0RSHGDWYj1Y5/4aHDYtzYF29Hb8DWsOz8DB/FxClhwG7f4AFvnS/HbdwQySOZ7aHeZR8zf5UbOiJsFizrGx9WJ+Req22fiNSqD1KffwqOL2nvMbB7cA0hP+ULQ//EHHlIS/0QAf6vMfjWmTpMBiWRe9kiVAMi9sh0a1vdvc6oljiTWeJiOEaSE+4qwQ/wBVJS5dsyWYnU3J95NNcNsCRyQoLEXyAN/bGnqq/wD7BUkxtdU8hmJ57+6PTdJkv8RUcR2lnYWG4o42W9/fIWPwphF2VG8FdwpPskje1+gPH8FNOsL2IRVDSIwXnKREvDO8xR+H922po2dMDiMdI+TyOw5Fjb4aCrcFsieX+HE7DiQMh6k2AHWvoEMGBiNhIjPbyYWIzOf53Cp8IjTKNJ5Ld1s/LIiTGvv26iHJEPpHVtaYfZXYyabTxnO4hBlII5stol/mkFP4+xkEWc8kMdrXDuZXH/44d1F/mkatNLsbGzADEYw7v93EtlHpey2/kqK9lMKti6mQjjK5b/B5fgtGzpk5Np4GMlIEmnb6m7GPhAoYj1Y1TNNO+Y2elv8AqAk/+oxNbPFoU3RhmijUeZTESD6WZbelVy48LmQpPUC3uBz+daD51O897HBgekP4gVQ+Jdc2w5TqFZfmCK3OK2yT7YA6ED7qVYnE34nPjWhpkmx6HUN723vkwNQJhPL3i3+U2+VNMcOaq/Wwv77Z+8fClTwIdAR6H87/AC+VSerhkOn+Eg/LI0RFg49CR9x/xWoA4Tkw9+Xzr1nkTJhl1zFUuhTqDZcIPiuOhBqOK2ArZwv/ACsfuP50NgcSgsWJS/Im3vGlM4pgWO4UYfA/LL5V2mWF4sc7jlOZSldiTg2NxV42K655t9W9vgdK0+Fla1iiEdZR+K0THFIzXCx7vLvFv/Vf8K3J4fti3y/TI4dcNvWfvI2HBrj5itLh5YhHuBFdDnYksPdckD4VdjNmM4s0UR9ZBl/hoFdgxwAu0yRjiFLN95A+INM8mGHWv7C4ZZd7KtqbOw2boXhIz+kPdncZkfKnnZvtZjsPEvdM86G4VJl8K8Lghi1hyuKz+J2gjkpEWbLzSZ8fZTy++1UQ4Pe87vb1rnljPJdzHh0xvw7r7V2a7WRYhVjnaOLE2zS5Ctc2BVm5n2Sb3560+lwttRXwPFbNeNAIpI5VYkhWYq1zYWClt1uGmeelG9nv7Qcbgz3ct5Y1yMcmq9FOq+mnSvH5P4fXT0Yeb7fZpYTw99DunpQnZztdhMaAI33Zf7t7Br/V4N7s+gpzJF+v1pXnuNl1XeWXordD7qqKX1A+Zpi8PHn+OpvQxQ/oVkvi2K7bYx9HWMckUD77kUmxW0JZf4kkj9CxI+GlUmNBrID9lSf826PnTLZmyDKu/YJEDYyyk2PRFUAu31RfrbWvbqR5d2lYPoKOweyJ5RdI2KjViN1R6u9lFb/ZHZRI0EkpWBDmHmQNK/WPDDwqOTSXtU8b2iwcLAQwHETaK+I/fPf6kVu7T0VaNrTK7L7GyzEbp7z/AMlHm+LALEPe9aCLsNHF/F3F5ifEIv8A6UCux9C1FtNtfGeYmKPh3rFRbpGmY9CBR+D7DqM8RiJJDyS0a58DbxH4irZ0VlcDhxnMo6QYdR/jxDPf1Cii4MQ8uUGAllH0sTI+567hKRkeimi+y+MwhmePD4RowhIE5S6sVNj+8zPpc59K1EmKUcSaFpn8NsnHkbrYiLCJ9DCxgZfaAW3zq+HsbhAd6bfnb6Uzk/4clPvFHS486DI62AubDU9B1yApLisf3vl8XEODkNMw9jvZH2Aym1t8VE6kxMMCERRiyjyRKov6eUfOsLjv7UCH3Uw5VQfEXPi6+EWAI5E8OFNP211O7IQb6MqkA+65+F8uouQo7RbBjxALrZJeDcG5b356+tMVOsP2j/aEur3B1UZfEC1L8TjZFyLHc4E3JHqQQeeZJ4V89VpsLKRmjjUHQ/mOta3Ze20nFjZX4g8fSnQ2NklY+3l6Kw/xhj86FknYaMR9my/5QKhPGVuUzHFfy/KhWlvmKQ8xU7sLM7sOTOxHwJpc+GX2CVP0QT8vy++iZDQklKUs7jjeuiWM3MjOumUabxOfVgB6k3q6CJ5G3EUs1icuSi5J9AKHtxFQX/tmHTSEseBkcm/UolrX0850r07TLqVWKMJYDdCDQfWsX5atQMmFvmNeXP0qmOQjIi4B8pvkfSpHOC7mRe7MSKze1ncjXwkkgZnWxuABkKUy4J0Yi1yOFs7c7A5jqpI60ZhrOcyNBmSbA6+EXuW6kj1FMFmV13ZbsgPhk0ZSOOX3i+mYyvWpNs3ghincmyZHgFAv8hc0xw+1GUhSZGPG0gFjxyKNV209nkKWvcH/AJi6Ef8AUUf5xe/EXNNuxuwcK0OInxh/dqtleOTxK9juBADZnYg+FhovDOizRlKZse9ix70gf/cfcAooI7QRwVYS2yy7wvf42p9g8Nhu5Mkklitr7pve/Lmbm36vSLauCAAkRGVGJAOufBSQN0Nkcr8DyNUqseYWKMOWUkBbgqRmDY9RlXNO4urPZuBBsL71vzBvy6VTgGU+bd01bLMHnY6/hTDHQ2iIK2JF1s2qkM19BcZXvbgedb7m2fZXDjGBIbx55q+YPD1B6itJg8VhsRGImS26LDM7y+jHMjobjpSGaBpVQqd9wpuo82uXqbfh1oXCoWawO6/DqeXQ1YZ64WWOx209kPC28puvssPx5HpWn7L/ANpuIgtHiQZ4shmfGP5uPob+6l+w8aZC0Mg8W6ciNbdPS+VBbR2SDdkHqvEenMVrLx45zhnHO43l9z2Nt3DYxN7DyAm2aGwdfVePqLii2iP6FfmuGSSFg8bMpGYZTY/Kt5sz+1vEpGFkRJGHtEEEjrYgV4s/BZeHqx8v2z+wdgKFWbEKW3/4MAyaX6zcVj+Z9M61zYxMNaSTcedQAosO7gA0VF03hz4UtxmOZN6Zz+9ca/QXgByyy6CsVtHaLSEi53eVdO2DPbvaWSZid8knViczWg/sv2T4nxcmQAKRk8SfMwvyHhv9Y8qweGw7SMFRSzHQCvqjyrhoAoDFY1VbqASBoz2tY53bSq/Sn21o2hGugLHrpVU+0S2tra2tWSwW1CGVJGDb+cUosFkHLLIN04/e07ys6a2YvicszkKonxNrj2h7Ckbwyv42sRFwysz5+QDOl+LxIVGY+ypb+kFvwoBdnmIAwkBwqh1PlkIUBieTk38XXO9IMpTveaxF77ovu5G4JBJLsLCzOWIOm7pUXlobDYxZAbXDLkytkynqPuOhqTmlITsCLHMfr4UEMQYjn4kPHl6/noeh1vkahZGqSW0sHFiEswvrusNV/XEVh8fsuWFwLE5+FlBz/I9K1G80Ruma8V5enT5jqMqJ3klTgynUfr7xV0NbJMBtZhZZwyng5BHxv99GYqHe8Sndb5H1pTtHZzRXKsSnqbj15jrV+Dw2KSLvTh5jh7X7wI26BzDWtatSb6Zt1269zY5Nyqp0op92QA3vyYcKcdl8VDhxJPMO8nj3f2eMjwkm95GPJLadRxIqIt4Rs7DMuRx2IUXBzEMbcD9Yi+X4DPELG0eR04H8D0603mxDTO0rsWZiSzHUk6k8uGXAAAZAU0xuDWPDxK4vNKe8A+hDYqLjnI2YHKO/EVJn4kD6a8qnLs7fGeTDRvwPMVLG7NZPHHcjWw1HpzHT8KL2VtBZLK1g/wAm9OvSkM++HZGKnwt8mHMH8aNw+LOQRQlgBYKSxz8u9m26dMrj0rR4rZyuu6wy4cweYPCs9jdntEQH09mQfceR6aGnQM8AJFNwLLkdxrAm+vhF9xh13QeXGo7Q2EG/eQHcbkMgc7/yHTpkNNaChxjpYMATfLgG9OTdD8aZbPxpPHO9rgW9xU6H6p9Qa6z43isXc5hJLjyTuYlG3xl3i5SD14SDjnmedM4cRiDg5MLAyy4dirMUHjG6d4byswKG/EAjM55m7PF4WKdd2QZ8CNR6H8D/AK1l8bsybDuG3m3bi0qXBGfGxuD0v76Msbj2plKFjljzjkDDMWf2hz3l4g+tx10o7azDvfDcwsFVHW3iVQAACclO8LkHMXpvjMdg8Y+73f7OwAUbzX3yurl9A7akHw8iaWYvY2Iw1yo7xD5lIvf7ScfUaa5UfHc3P38nfOjns/2ewpzmleJvZHtknQBt5Y15+I50LtTskoLbuJVpACSDmPD7N1Hmy4Xr3ZWxMXjoA2FVmjw53hAzre5N27oE3k6g5jIXJr2Ta++CsyBZlkUeLe3wUCoQbuAp3V3TvDhnRxvr/n+P91av2SbNx1pFMhKyJ5XPTLdbja1xWiw7iQFlO7ukhr3yI6WuRmM7ceFQl2EJQ5lku7tvKVCm17kg8CLngeApU8WJwha7ExPkWXTlnxB/QNdZ8sO4xdZdGE2Ajcm28D7gD7uHxpTPgN023bU9eZXCsotlmd7e3j9Lyi3pn61ISg6i5rtxfTlzGf7QbQLNu39aTIpPwv8ACukYkknjXsZPDKvBHransK/jayjJSzN77KB7zf3GnWPxLd4Fib96i724fLIpyK35i3z9bK+xQAik+kXW/oFy+ZNXY0M0ndyEi53oJVHkIHlPT9emPbfp4Wj7ssqlsMx/eR+1A/FlHCx1HvGVMcDtIoVjlYMr/wAKbg44Bjwf7/XUNFZSs0jJBIfC4OazKMgVUeJjyKg2vRGH2dJulYcPZCxYNiDuIDf2Y7l+oOQ6UjZjtGUd1LlcBfF0UkbxPLw72tXnEhvEDcNmCOudZ+fZ8RkSPF4p5T5ljRdyPqBbw3PQA1TIThHJXebDMdDmYyfvXr+OtpbPMXCHswO7Ivlca+hHtL0PyOdDx7Qz3ZbI46+FhzU8R01FWLICAym4OhFcJCDfLLnUlT4lD7Q+NVlwdM/QGhtqbQxateNlEfMKCV6Ne/xGR6aV2H7RYiMDvGuD7YA+BFrU8IR3DHRHPorflQ//AAycNvRRSX4jcax+WR/XWjh2jlOkuvIL+VQk29Of+c/uP5VIEs28SCCri4ZTkQRkRb8KnsjFHByd5HEs0Z88DZA9Ub2G+I6aUBMhJLWY3NywB3gTxJHmHzH3XxORYSKVLC6kggMOYvrTNzpS2dGW2NmYbEO0+ySu7uF5sKzFShAFwisMgAGJO8VuLA3KqUOGnWRbjTiOIpnhcRNh5DLhpDHIRZvoyA+y44+uo+FNMYkG0EMsZMO0BujumaEd4S+6FFyhmBTMFVLLYKN66hZkm2csSyb812VBvBRf96QRaNiPIG+lpYHiQD4+MeaV5JDeRjvHK3QWHBQAFA4BQOFDurxuYpUMci+ZDbMHip0ZSNCLgg0RgY4y6iVisZI3nUEsg4kDjl+iKkdtaLCF2W8k7hIFvbyMGkkP1QLIOshpHtbYW+O8iyfiNAT/ANrfI0Xi9omeYOy92oVUhTgiL5V+0bljzLG1xo92UEVJpps4YYmLfWZvBGg6s5HwJ4Upl9i7cz7qfJhkGOWfJuR6/o6J4VYFWAYHIg8aS43ZP7REHsEltqeXAP0+twv8Qdk7ZeBu5xAIAyudV/NevCtSijcZsjcBCgyR/R1ZfT6a9NR1pX3ZjIcHeT6QzNuTfSUc9RWuZ8gQbg6EUBicKCSw8LHXk3qOfXX1rWhsFE28LjS4zOnMXPtC2hGeVOtj7MnxF0iiaa+Ry8IBGYZj4fjTjYuDwMUQldJcXILAIw3Il6akuRyHwpTtPtvisSksMZWAxsFSFFKqRf6I8wOet9Bzqvksmh8JeSztR2HOEUussBYglsMGLnIgWBUZN4ibXBADWPCszgNvvCQBvFBkYnJO79ltR6W9x1reYhQyJId6Y2yiDBEVgoLGSW1zc5WQEncN3Sstg9kYnaeJdVhQEWUmMbqRBTnfnkTcuSdLnhWJbOY1ZPZ/gJQyrPCWTfzuMjvKbG9vaGWYz0zptjhhNoDdx4EUoFlxaDxC396ukijnrblrWX7TbcjwbRYPCMJFw2+JnYeGSRiAwUZHdXdA3srktwte/Z3aKCWwY90/JvKfRtPjau8yxznLl8csembTFvhmPdyCeAMQrgMFYXyIDANGfqsPjWn2btSOcWUrmLEPwy4jiPjV2M2Ij3YeBj7S2s32how9fjSTDbJ/Zp0nKKyxneK5921hcA53QE2uCd3XxDSizLEyyh5JEjkG5/BluU+owNmQ8s7G3DeHrR27Sram1Ti52GKAiLMTdRYISFUnuwPF4VQZAE7q1z7R7kmKS7Mts1INwQCL55NY5jUEEHO9GHk1xVnh7jOg1fg41JO+SBYnw2vl61RU4mAbPMetvnnXGdupls+ZoCZENxkCD1/LL41tcIVaNZJZ0jBF92LxP73YWQ/ZW/1q+etPYEJcBsmz1/X61NHYFsgp1Pl/L38OvrRZvoytcu344pGWCFULaSsSzvzuzZ/OluK2vPKrNvAbp8Sk+Lrr4Vy01FAuA62Px5Gqo5d5txgBItrMRe9uOouaCI3RJcEsYyAwZ8ijWyKk6g9MqLwG0CbwzWLWyPBxz+HClpZHuZBIwB9r2uJuTYKvpZjzGteyuJhmu4q+WTwgKRoBY2IytlSBaSHCtxMDH3oT+H69XSOCLg3B0pJg8Xv3ilA3wLEcGHMVCOU4ZrXJhY5H6B5elGkehuI/XqOIqmXCZEoLj2o9fUrzHTUdRpKN75jQ0RG2lvjyoJbBtF4FvELpqRldfTLMUyw3aSZhdZj8F/Ko4jC7x3lsH5aB/wAFb5HodQsPJ3ZLxou+L3UqM/cwIDX6c6dowftFiR/9Q49CB9wpFiyXILEvZQoBOYA0CH2fTT0p1gu0sjjw92rDVTElxw5Vce0uKGkgHokf/wAagR4fE2ADXZNA9tM7WbrwqzEYQNutoykFWsDYjMZHIjocqs2ntCeZWV5SwZg7KclYgBQSFAzAVfhegcPit3mV4qdV/P8AXqFNYcZDtBDh8UFgxeRhlHdrH4c27skqQzi47liVLFbFRmue2hgpcLOYJ7bwNkkW+5ILA3VtCbEXHA5VaYlkUZ3GoPEHgQeBFOsF2iQRNhtpgzwEeGQkDMA7veMsLyhxc2kU9CDc1AiWPpccV/Lken3a0btbHIUhwqMWhQiaWQgjekZfCjXANohdb8y18xeqNrbHxGA3FxRTdkvuMrhiADlvCwYXFiCVGudjcD1VvmLX+R/XP79KUdbMjZnVVFyxCqOZJtb50Ft/AQYiXERRkkQOyLLbQg2I+sl7+6x61ds7aH7HBLiVPiX91DH7SzSKbNbXcVQ7cr7tulPZ7DiOJQpvxJB1J409hntlYiXDSiCUWRj6gDi68xbMj8a1uHxERAaIbwIuHex+CC6r6He91Wba2UhhjZ8lkMgUjVStgWXod61uhrEI02BksfEjf0sOY+i1v0aYm5aQk3JJPM5+706UBjtipLLFKGMbIwY7gA3rHevlbx30Y9BV2zcYkyh0Nxx5g8iOBpkkVa4rLEbBw0mK2hGiM2GjiJYsTYwpH42Y3NlIy5Z29a32ztsNDdcKV8RKjEyboRvG0m+SApmdVNlPlUsTvMxFCy4beWWNQqvKE3jbORUbf7stnZWIF8jcC3Q41YsRiGMUpEQBK7gvvlVJ8Ou7uDeHiOtha9c7jem5RG2Nj4SCSERY39pEklp4yL+HVmBBNzrbLeuRakeE7MTOTbwpc2LcRwNq2OzNhxxDJQDz1J9Tx+Q6CmYAFbk12ztidnTyYWfuQx3Dewa5F9dNBx0+da7Z2Ph8TTK5Kg2jUZOeRN9OnO4JyzR4jC97iSw8qcTppb4frjWg2Hs+8xkZf3cKl30z3SN1LdWsttBpmQxpuVk0NSvnGEx6CJ1kDGQALEQFO7c5g3GlrjLQn30RsiHDlCZZFDFjk2oHvGfP31Th8Or4mQ75Zd9/ED5vEc7jnrRy9nFOe8wvoMqNXUq3N6ZwRNwU/A1BhWu2vC6sFjIW6FrAZ5EDPpnyrKzRNck59a5x0U1c8hYj3VTTFIV3FlUrvA2aMXJAA8/Qae/4UwD4nLLvHzqPGOY03x9x+PGo4mMOAQbMMwaWRYtlk311ByBzy0sRxBGVNpVAs6+RtB9FuKH7weIIqsSuCcMCWTekX2Tp6gHL32oqF2upKhpToCb7tr+RRcE29pjcfVteg54ifEvnHz6VPDKkl3zuRusu8cumRGV6CvxUW8F3pEE17runQ8r3O9nx05E1bhMR3gKOLMMmU8eo6VZh0C6AD0AH3UPj0BZSpCyjNfrdDUnuGnMDbjEmJj4T9E8jTpTa3WksU6zKQRnoynga9wOJMR7pzdD5G5dDVpNCkg01r3FQB872bg3Po3TrqOo0B7yxomLE0EE+FUv41IdeINj77ajrRMe2oQdw4VN4fSZ8/nV04VgAeGhGq/mOnwpbi8KG8L6+yw/A8R0/GmAybbCDTBYb3gn76qfbj3DR4fCxsN4XEQNwRaxByI0PqKHwkUSj9/MQNAVW5PxooDA/3uIPoi/kaUR4aV0Ym92Nyym1mucyLADX4dKdwSJKul+DKfxHKpSHZ5Ga4tuRBQEHmLqKV4nErvR91EYnC+N2cnvGtmALWUa9c+lXYPdk7Vkwu7FI0kmDyDRApZFZvEWDRSGSOxN0teo7ewEMEshwsqyQAB+6u28kbaPG7fx4xmCR4l9oZE1TgsYHyPhcaj8v18aKwm08Tg1k/ZSpR7M0L33SwsQ6WIKvlwNjkdQCJAhuuAwIPI6/r9aUVg1a/wC7BLk5x/SJOq8LnnkDxscxmsFtaabEHdhUM3nSNSq3GTOVJtH1Iso5CtHh52VkdSUdSGVhqpGYPr0OVIE9oZxNj44kN4cDGqXGhlPic/1MR/IKIxeBWZGBXeFiWXoMyy8iNT6E+qXCYcozMjeNmZjvHJ7m5v8AnqOo11ew5B+z4qa1isRisdQ8xCW/pLn0zp9J84xEM2BmBU7ytoeDjkeo5+/pW/2ZihIiuujAEe/h+FJe3kQXCxc1cD4qRRHY03wsfq//ALjVSo7lPiBHIUJ2o2a0sa4qDKeI6D2srlSPrDMehHKiJPN7qJ2bMA+4xssnhJ5H2W9x+801Euzcas0ayLoRpyPEGvJ2LEquXM8h+vvoXaWGODxZ9mLEMQwGiSjX0Da+/pThVAAtb0/E/Prra2rUo0Hw+HCjdX/W/P7/AE+1crf2nxX7LgBGv8XEFSB0N1i9NHkH2E5ijtk4MMxZ792g3pCNd0ZWAHEmyKBxYVgO3G3DPPJJlZd6NANN4gCQr9VUCRDgRusONYvNa6LOz2Gu2RuOdaN8XGp3W3lItlbgRcHLmLUJsDA7sJZt2wF2BYLcchnfPIEjQEnhVxh72xQyEL4bpoSDcm5Nzcm9+RA4V2mtMFyI+94UaeR75GQC1tOV/QW0pVExlO6Yt0cxfL4012bhN8Etcqup/CmWLVUw5dFRLkrawL5GxuScr24dK8zqwmIi3SRUIZSpDDUV7I9/n+v1zqut1kcoUEOB4TqPonl+VW7OxwBZXuY3yYDVeTL1X5586Bw8u6cxdTkRVwXcccVOYP640xGzoY2KtYkZgjRgcww6EUPNdT3i/wAw5ircDL3y9zo63MJPHnGeh1HI5caqifnrxH4VWJbJjNCc4nFrjIqarZb2ic56xyfheqXXuzmLxtqOXWuAH8Nz4T5G5cqEtBYtcZTJ5h9MUSCsqeuo5GhSS/hJ3Zk8p+kP1+tasiRiRIo3CcnDXCm2pGX3VITgsWVPdSfytz6UYZSKqw+y5cS3dQxPKxOW6NOt+FDoHXeVyCUdkJBuDumxIOhHUVEwjxBopHDDdIuPmDzHI/fUMPs0izSnugcwCLu32Y9fe26vWmUeMEY/dDu/r3vJ/VayfyAHqaEUbSwEkVlmRgrZqWBF+PHQ0BhwyG3mQ/Kn37Vky23kfzA5365+0Nb60ilDxkXNwcgw0PQjg3T3imCn0OwZ3AZUFjzdB95q8dl5WFm7oDrKn4E1mJJpNQxtxFXRMri9z1BJ/OnSO27PlCFlxGHQbrMsm+TbdIuG3V1zBHOx0IqjA7TV/CWFxkG4Hhf35cPWx1AWFeQrxkCjPNOfFOvVfu45VI7RTeyjNiMuZ0F+Zq/BLHK0kMAE+ITLdZ9xWNwCFsMhnbfZgL6hbileGxBQhXzXg36/XqL7pOzO0P7Nif36KsEoI75VOV2DXa1724gC5BVraX1hJcpMrqOXnyzx8eWWGO76n20W2eyeIw+HSaWNlN/GgG8qebxd6jNugWGbAedetqNnbQWSNILbrd4WZrjx2WyAjgV/eZaeIkcQPpsmLjbCK0O0IpI1B3j3kYUjlvXyA03WNfF7r+14jus4e9G7a9t2QM4tyzUEHUW6mtZYT47mW3Px+bPLO4ZYWcS741z6mvr9/rd/ag1oIV4mS/uVT+Yqzsa9sJH6v/7jUq7eRzSrEx8QiDAkam9jvEcwAL25X57rfszDbDQjmt/6iW/Gucek1lk8XwoWSWq538ZFQw8LyusaC7uQAOp/DjWge7fwQxmFRjkZV3S30ZY8lb32+F6T9nneZApU98tldQM76A24htQdM62u3IkhhgwEI35SVJtrc3+BYm/QCvlu3duTYHH4oRsN1WyBvmXUMxVlIZVYlmyNs+tc9nTSdutsfskAwsLXmc2JB1fNSQfox3KqeLlmHkr5lE0ZmjQsBGtlB4HO5P8AMxJ6AjlV/wDxB5pJMVNYkCygCyjKwVRwAGXvvmbmmXZTZK4iKdJLASW3Gt5XW9j6ZkGtRNKIgBbhQcuyoiblbelxQOw8c6M2FnyljyF+IHDrlmOlOO8q2me7Lz4VGkTGjE3AFhBuFixNt3dcZWva99aG2likJa0bqcyTkzbo+kCSAdM8qSjEGSSRmzMm9f1J3r/1WNHYLBxA/vCAt8yRe3pbX50fH3FsplZQfDcr9bX5VBlFrjnp+v1lWi7VYLBgxjAzSTDdvIXXcs3JVKrcW9TWe3bA3GeVG0gBTHBbQIifDkIFkI8ZW7KQb2DcFNvxpfv1xpl0hsEBDEEEbpGmt75f7/6U0nYSqZlzdbCUDjwEg9dD19aWYeQuu5ezgWX6w+j68vhyrtl4po3BUXYZFToynVT0/wB+FagFbwIsdKqjw5sytbc1U3z9ANaKxuHsVMdyknkyzB4oRzBrSbM7IBUEuOkMSHyxr5293D1osJDszByTukcMbTSDIG1z7+A9+da6Ps5hMGO82jPvuBf9mhNz/O2gqna3ak4eEJg4hBCSBdfO41O8+oNr5DjSN8NJiE7qNTLI5BUKLsVI3yxGijNWzIA7y3s5CMO2HbKZ4e4wyJhcMcmSLIuPrPqwNmy0IAOjAUm7ObV3VCDdVxo9vEPsk3CnXMC+eR1qjbEAhRYpJ1kkXIxw2IGYyklGTMAFFl3gNwZ0ogmW5BG6CRYrqpHHrTJE2TNa5zJOpJuT1JOZ9ajEwOppbgsabhJNfZI0Ycx16f7UwA5VWLaZPwqSoCCCAVOoOh/XOvGU3q8LQSnEYQx5gkpzOq/a6fW+NuJWz8Id7eCgnkdDTJBUoMPu+RmT7Nrf0kED3CkDlxrjTDYcfyA/9tXxbYxA8scA9IxQitL/AHin1RfwtUjPONO6PqrfgakA21+1PAIw47tSW7sCwOZYAct2+Q4WHKlGzdoAgowDBsirAEHPiDkGvf35gg66GTGYngmHP9dZ3HbFxDyFwIlLagHI/GmX7Fg6DYWDazGKQDlHLYG3MOjMORzFaMspWOOKFIYo9EW5udCzM2bsbams3suPERk76Xy4MDvcLHiG5N0sb5W0fe28q7o5tYn3LmB6m/pRTFpAAsRcnRefU8lvx6ZdLMFGsaKg9kW0+4UAJMz11JNyfUnM+tTSQ1JLaEfiuONaDs9GMJH+0Mu9iJsoI+IBy3iOvzyHE0nw8DSuqKu+xIso4/6VoYmIl3ImEuJe4ea/hiUDMRnQWGr6AZLzoyqi/AYURmR5mJksTiJL+QN/ykP96/lJGguBoa+C9pdoNisZPNbOSRiAOAvZQOgWw91fSu3PaiOGIQQNdFJ3Txke1jIRyHAcB1Jr5dEhjAsLyNoPog8fU0Tk1ekBdkw6Z2PiPXj7hpW+wmGEUaovAUs7NbJEKbzedtenStHsjZ7YmZY146n6IGprVuhCftrstmw0OOXwujbhb6QuQp62Nh7zUtnXkjV7eYXpr/aptNWeLZuHHhi3S9vpEWVfcpLHqw5U12HsQLCi8hWd6mzrl8SjFje9z8v9asLX1N6oBqxTWguWptmLML/rnVINTU1JTLhOK/ChiLZGmQNdJCHBHEaUIuAOvzrTdmtkvjZSIzEkgW7mRtwEXHiBsbHO7ZcL8bHNg7uV7/rrxGdcrFWB4jMfrjTAcbNxssbggqLPvDiARaxXXgNaZ7RxcmKmURCSeS92Fr7w0IsNFsSLm2ugpbg3w5BeTvCotaJLC5N7gyG+6mQ0BOduF6hju0DshijCwwn/AJUVwD9tr70p+0SPSq1NBNhsOgAmcyOu8TFE68bfxZ7d3HnclU3zd2z0svx/aJnXuItyOIm3dx3SL1die8mNuLm2WlJtmYlFYtIoYBWspFwCcgd29ja+lMtj4MSMxyiVbEm93sc9QMssrKAcxfnUSnFYR943ZSRkAvH7K2BA9wFUyYN1FyjAc7Za862Me0olcjD4cS2Ujyi5fOxAvZhbPiczyqrauy8ZJJJuzRyILAFCdxhb2QRwJIztpyzoTLYbFWG44JT5qea8jTvBYrdsHa6t5JBx6Hk3rr9+fnuCVYWYGxqeHxJS4Iup1U6H8j1rW50G0F9eHP8APlRC5jK1ZzAY8qPATInFT51/+Qp1gcbG/la3McR7qtHY5TV0ZtwqoJUtw0ISsmWlSaTLSge8Ne7/ABFRXyTdKis1VM1VDW1QNY3qRNWbN2HiZPLGQOb+EfPP4CipNnoCIw5mlOQSEXF/tcfQCpFZFMtl7NaQFyVSNfNI3kXO46s/1Rf8ak8MGH/jnvZeEEbZA/8AUkGn2VueoqrG4t5R3mIZUjQeGMeFEHQez954mi1D/wBtBBiwoKxnKSVvPJ0+qv1B7yaSdoe1UGGgaHDP3hbKWTQuRn3a8kXK59ojkBWU7R9r2k/dYa6JoWAsW6AeyvzPTSs5HHuEXG8/BdbevXpWdbO18srM3eSZufKvLll9wrRbA2Tu/vZPOdAeHX1qvY2x9395Lm5zAPD1608vwFbC5QWIVQSSbADUk6WrbY/EpsbAlzutipskGvit/kTU8zYcRU+z+y4tnwNjcYQrKLgHVAdABxkbQDr6187mxE21sYZ5QRGpsqcFXUIOp1Y8b+lsfzfhroT2I2Q0jnESkszkm51O8bsx6sb/AKNfTIQAAKX7PwwRQALUbviueV3WpNPzXUgahXoru5rVNTBqq9SBqS4Gpo9iDVAapA1J5tLD2IYaGqcNZvC3HynkfyNHAb6FeI/3FK6E9kQqSpyIroomY2UE1J3LZk1fhpgpAa+7fMD9Z1I32Dss7wdjGSuaozAXPDWw+dEjCzSYle/iU33rRA7t8rjxLnmcwb52OnCjBIs7b5VY4Y9L8TrdjxsPd99Qi2skbSPEtmcnc5Kt7C/W2fqaQcybfiwsUcSorSp5je6ghuS23uBv1pbP2pxci+dYw1s1ABsBawsLnj+JpJHCWYsc2JuSeZz0plBhwMzmedGijBCztvnXK7G28bC3oPmetGPh1K7p8Xr+eoqt5OVRRqUXYrZjod5L/iPzqtcaCf3gO8PbXJh+dPkkyzqjEYFZM7e8a/61TcTsFtSVR4WEy8tGHupxhNuxPkTuNyb86yU+zZEN1ubctR7vyqC44nKRQ3rkfjWtyh9C7wEXyIroY1Y20/XWsPhsRbOKVkPJtPjpTeDbUy/xYt9fpL+YuKtLb6Ngdg4VV35pDbkzBR8sz7jRCbYw0RC4SDfY5AhbX99i7ViNn7bwzkWhmZvogqLn1AJ+VaApjmTwomAhOW87CK46u571/cLdKxY0N2pjWz/bJ+7H9xFm56EXsv8AOb9KSPt2WT9xg4mjD5bsV2lk+04G8R9VbL0oaQ7Pg88kmLf6Md4or9ZGvI3qqik+2e283dmLD7mFjbLcgG7fq73Mjm3NrdKkOxe0UwYIlB78Egx+0vQ/R9fvrIbT2tNimsTZRmFHlHU8z1NApB7TmwPxPoPxpjgsA82QHdxff+dQC4eM33IhvOdW5enL1rTbK2SsI3m8Uh48vSrsHhkiWyD1PE0XgcJJM4SNSzHgPvPIdTUk4rsbKCSdANSa3+wNiRYOM4rFsqsg3vFpGP8AufgAOOmdRwGBw2zYjPO674Gb8r+zGNSx+J6Cvn22dsYja0wABSBT4U4D6zfSc/AfEnG/l+Gul3aDbU218SFW6YeM+FeV8t9ubkXsOAy5k7LYuy0hQKosAP1frVGwtkpAgVR/qeZpve1GV9Qye1m8BSvF7TAa167auPCLWKxGLLMTeiTatfPK69eV1dnNMGvb1AVKpJg1IGqwaleoicHJZxyOR99DbQh3ZCPfXE1btaS7g9AfiL1VAt6vUW5rsjROEO7dhbIXFwDqwXj6mhJyyPuhfKnAc6nBBzr1o2PiPHif9da8uw50oYCBXd5Qm8/K3rVowTm28beuXwGp9wqSbTjnfoKsiDtoLDmeHrwHvq7DYRVNrXPUG/8ASDf+oiix93obemW4vuDGpIQYQZEm5OnX0yuf5QfWi1Kj/TX8QD6lj0FUGS9+uvX1JzP3dK9jjZjYAnpbP4ClLHYGvI9lJOwQgFmyB43OQF/XneiE2YRYyMsY+sc/coz+NqKjx8OFIdbb65h5cgDwIjHiJGud6KmCxuGMUhQ8PmCLipYTGMhujMp6Ej7q92xjBLKWF93IC+pAFrnqcz76EdbVSpsMF2txSiwxEg9LA/EC9LsdtVnJZ2LE+0xJJ95zpPh1c+Ue/gPfpVgVQeMrchp8eNG0n3zv5chxY6D315Cmdox3j/SOg9B+Jo6DZjvYyHdXgoy/2pvh40jFlAFSB4HYwvvyneblwFN2kAFhVCsWIVQSScgNT6Vqti9lhk+I90YP+YjT0FVuiW7D2FJiWuPCg1c6D0+kelazaG1cLsuGwF3YZKCN+Q8yfZXroOFzqh7R9uo4R3OFCu4yuB+7T0t5z0GXM8Kzey9hSzuZsSWYsbne1PryH1R8qz32eunshxO05u9mJEY8qjyqOSDiebH/AEG52Ts1IlCqLAfr31XhMOqAAAC2lGo1ZtMgoSULjMaFFzVOKxYQXJrKbS2iXPSiRWu2njy7HPKgKiTXoNdGWIryva6tMur0V1dUnoqQrq6pONdjvMPsr/lFdXVVBqNw/lb7H/8ASva6iEXhf4g/XCicP/GHqfurq6lJbP8A4o9DVmC80n2a6uqToP4TfbH3CrxXldTAmlaPYn8JvWva6lFC/wDiJPsj7hWIxfnf1rq6s0qKlJr8Purq6so02h/BX3fdUuz+prq6lHzaVRJ+ddXUppOw38Y/ZP4U97U/+Dn/APLb7q6urF7anT5V2f8A40Xr+FfUMHXV1WSgpqnHXV1YJHtzjWeFe11bjNRavRXtdSn/2Q==" class="card-img-top" alt="Audi RS Q8 Engine">
+                    <div class="card-body">
+                        <span class="status-available" style="font-size: 20px;">Available</span>
+                        <h5 class="card-title mb-2 mt-4" style="font-weight: 700; color: #222; text-align: left;">Audi 4.0L TFSI V8</h5>
+                        <p class="text-muted mb-1" style="text-align: left;"><i class="fas fa-cogs"></i> RS Q8 / RS6 / RS7</p>
+                        
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 592 hp • 800 Nm torque</li>
+                            <li><i class="fas fa-check"></i> Cylinder on Demand (COD)</li>
+                            <li><i class="fas fa-check"></i> 48V mild hybrid system</li>
+                            <li><i class="fas fa-check"></i> Quattro with sport differential</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <a href="#" class="btn btn-dark btn-sm btn-view">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 5: Porsche 4.0L Flat-6 (Naturally Aspirated) -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-radius: 0px; overflow: hidden;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMGJFsR19M6qNWzbBCWLYEHbIDxIndJ7l9-A&s" class="card-img-top" alt="Porsche GT3 Engine">
+                    <div class="card-body">
+                        <span class="status-available" style="font-size: 20px;">Available</span>
+                        <h5 class="card-title mb-2 mt-4" style="font-weight: 700; color: #222; text-align: left;">Porsche 4.0L Flat-6 NA</h5>
+                        <p class="text-muted mb-1" style="text-align: left;"><i class="fas fa-cogs"></i> 911 GT3 / GT3 RS</p>
+                        
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 502 hp @ 8,400 rpm • 9,000 rpm redline</li>
+                            <li><i class="fas fa-check"></i> Individual throttle bodies</li>
+                            <li><i class="fas fa-check"></i> Dry sump with 7 oil pumps</li>
+                            <li><i class="fas fa-check"></i> Motorsport-derived components</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <a href="#" class="btn btn-dark btn-sm btn-view">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 6: Bentley 6.0L W12 TSI -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-radius: 0px; overflow: hidden;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT38GeDt3cODgYnQiYL8xuG9qFue7MLLjcKqQ&s" class="card-img-top" alt="Bentley W12 Engine">
+                    <div class="card-body">
+                        <span class="status-available" style="font-size: 20px;">Available</span>
+                        <h5 class="card-title mb-2 mt-4" style="font-weight: 700; color: #222; text-align: left;">Bentley 6.0L W12 TSI</h5>
+                        <p class="text-muted mb-1" style="text-align: left;"><i class="fas fa-cogs"></i> Continental GT / Flying Spur</p>
+                        
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 626 hp • 900 Nm from 1,500 rpm</li>
+                            <li><i class="fas fa-check"></i> Twin-scroll turbos • Direct & port injection</li>
+                            <li><i class="fas fa-check"></i> Cylinder deactivation (V6 mode)</li>
+                            <li><i class="fas fa-check"></i> Hand-assembled in Crewe, UK</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <a href="#" class="btn btn-dark btn-sm btn-view">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<footer style="background:#000;padding:90px 20px 40px;color:#999;font-family:'Helvetica Neue',sans-serif;">
+  <div class="container">
+    <div class="row text-center text-md-start">
+
+     
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h4 style="color:#1bb5c6;font-size:1.8rem;font-weight:200;letter-spacing:-1px;margin:0 0 15px;">
+         Aswaad Auto
+        </h4>
+        <p style="font-size:0.95rem;line-height:1.7;max-width:220px;">
+          Aswaad’s #1 broker for off-market V-engines, Big time car rims & private rental.
+        </p>
+      </div>
+
+      
+      <div class="col-lg-2 col-md-6 mb-5 offset-lg-1">
+        <h6 style="color:#10cfed;font-weight:700;font-size:1rem;margin:0 0 20px;letter-spacing:0.5px;">EXPLORE</h6>
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li style="margin:8px 0;"><a href="#" style="color:#999;text-decoration:none;font-size:0.92rem;transition:.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">Las Vegas</a></li>
+          <li style="margin:8px 0;"><a href="#" style="color:#999;text-decoration:none;font-size:0.92rem;transition:.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">Lake Tahoe</a></li>
+          <li style="margin:8px 0;"><a href="#" style="color:#999;text-decoration:none;font-size:0.92rem;transition:.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">Reno</a></li>
+          <li style="margin:8px 0;"><a href="#" style="color:#999;text-decoration:none;font-size:0.92rem;transition:.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">Off-Market</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="col-lg-2 col-md-6 mb-5">
+        <h6 style="color:#10cfed;font-weight:200;font-size:1rem;margin:0 0 20px;letter-spacing:0.5px;">SERVICES</h6>
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li style="margin:8px 0;"><a href="#" style="color:#999;text-decoration:none;font-size:0.92rem;transition:.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">Buy</a></li>
+          <li style="margin:8px 0;"><a href="#" style="color:#999;text-decoration:none;font-size:0.92rem;transition:.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">Sell</a></li>
+          <li style="margin:8px 0;"><a href="#" style="color:#999;text-decoration:none;font-size:0.92rem;transition:.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">Invest</a></li>
+          <li style="margin:8px 0;"><a href="#" style="color:#999;text-decoration:none;font-size:0.92rem;transition:.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='#999'">Rent</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-5 offset-lg-1">
+        <h6 style="color:#10cfed;font-weight:200;font-size:1rem;margin:0 0 20px;letter-spacing:0.5px;">24/7 HOTLINE</h6>
+        <p style="margin:0;font-size:1.3rem;color:#10cfed;font-weight:200;letter-spacing:0.5px;">
+          <a href="tel:+2347036808234" style="color:#e9eff0;text-decoration:none;">+234 7036808234</a>
+        </p>
+        <p style="margin:12px 0 0;font-size:0.92rem;color:#777;">
+          <a href="mailto:hello@miqdadajijola.com" style="color:#777;text-decoration:none;">hello@miqdadajijola.com</a>
+        </p>
+      </div>
+
+    </div>
+
+    <hr style="border-color:#222;margin:50px 0 30px;">
+
+   
+    <div style="text-align:center;">
+      <div style="margin-bottom:20px;">
+        <a href="#" style="margin:0 14px;font-size:1.6rem;color:#f4f5f9;transition:.3s;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d4af37'">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="#" style="margin:0 14px;font-size:1.6rem;color:#efebeb;transition:.3s;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d4af37'">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" style="margin:0 14px;font-size:1.6rem;color:#edf2ed;transition:.3s;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#d4af37'">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+      <p style="margin:0;font-size:0.8rem;color:#555;">
+        © 2025 aswaad autos.com. All Rights Reserved. Licensed in Aswaad #S.0183742
+      </p>
+    </div>
+  </div>
+</footer>
+    
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+</html>
